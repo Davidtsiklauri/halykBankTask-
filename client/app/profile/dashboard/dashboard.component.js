@@ -4,9 +4,9 @@ import './dashboard.component.scss';
 
 const LoginComponent = {
   template,
-  controller: function() {
-    console.log('onload')
-}
+  controller:  ['$scope', function($scope){
+    $scope.greeting = 'Hola!';
+  }]
 };
 
 export default LoginComponent;

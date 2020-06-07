@@ -6,4 +6,4 @@ const SharedModule = angular.module('app.shard', [])
 SharedModule.component('wildCard', WildCardComponent);
 
 export default SharedModule;
-        
+         

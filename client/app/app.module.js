@@ -2,22 +2,28 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import 'bootstrap-css-only';
 import 'normalize.css';
+import  translate from 'angular-translate';
 import appComponent from './app.component';
 import  'angular-ui-router-css';
 import registerModule from './register/register.module';
 import profileModule from './profile/profile.module';
 import SharedModule from './shared/shared.module';
 
+//Translate
+import en from '../assets/data/i18n/en';
+import ka from '../assets/data/i18n/ka';
+
+ 
 
 angular.module('app', [
    uiRouter,
+   translate,
    registerModule.name,
    profileModule.name,
-   SharedModule.name
+   SharedModule.name,
 ]).component('app', appComponent)
-.config(['$stateProvider', '$urlRouterProvider',
-    function config($stateProvider, $urlRouterProvider) {
-
+.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',
+    function config($stateProvider, $urlRouterProvider, $translateProvider) {
       const routes = [
          { 
             name: 'register', 
@@ -35,19 +41,16 @@ angular.module('app', [
             component: 'dashboard',
         }
        ];
+
+      //Default path
+      $urlRouterProvider.otherwise('/login');
       // Insert Routes
-      routes.forEach((route) => $stateProvider.state(route) );
+      routes.map((route) => $stateProvider.state(route) );
+      // Configure translateService
+
       
-      // 404 Page Not Found
-      $stateProvider.state("404", {
-         component: `wildCard`,
-         data: {
-             authorizationRequired: false,
-             permissionsRequired: [],
-             bodyClass: "error"
-         }
-     });
-
-
+      $translateProvider.translations('ka', ka);
+      $translateProvider.translations('en', en);
+      $translateProvider.preferredLanguage('en');
     }
-  ]);
+  ])

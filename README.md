@@ -20,3 +20,8 @@ npm i && npm rebuild node-sass
 ```sh
 npm run start
 ```
+
+#### 5) Open chrome on 
+```sh
+ http://localhost:8080/
+```

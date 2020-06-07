@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+.btn-red {
+    background: $soft-red;
+    color: #fff;
+    padding: 14px 0px;
+    width: 219px;
+    border-radius: 31px;
+};
+
+.warning {
+    color: red;
+}
+
+.backgroundelss {
+    cursor: pointer;
+    color: #007bff;
+};

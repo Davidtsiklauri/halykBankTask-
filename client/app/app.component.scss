@@ -1,3 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web:700');
  
+.change-language {
+    position: absolute;    
+    right: 16px;
+    top: 10px;
+    a {
+        cursor: pointer;
+        color: #007bff;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .active-language {
+        color: black;
+    }
+}

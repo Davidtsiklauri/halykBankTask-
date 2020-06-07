@@ -14,10 +14,12 @@ export default function ($stateProvider, $urlRouterProvider) {
            name: 'dashboard', 
            url: '/dashboard', 
            component: 'dashboard',
-           data: {
-             needAdmin: true
-          }
-       }
+           resolve: {
+            bankAccounts: ['profileService', (profileService) =>{
+               return profileService.getBankAccounts().then(({data}) => data)
+            } ] 
+           } 
+        }
       ];
 
      //Default path

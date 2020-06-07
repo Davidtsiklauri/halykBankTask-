@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+ 
+.login-container {
+     background: $soft-grey;
+      .login-content {
+            background: $white;
+            height: 330px;
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 6px;
+            max-width: 400px;
+            .form-control {
+                background: $soft-grey;
+            }
+            h2 {
+                font-weight: 500;
+            }
+      }; 
+ };

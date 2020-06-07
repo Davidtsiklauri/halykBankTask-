@@ -2,9 +2,10 @@ import angular from 'angular';
 
 class Global {
 
-    registerUser(name, password) {
+    registerUser({name, password}) {
         if(name && password) {
-            localStorage.setItem('user', JSON.stringify({
+            if(localStorage.getItem('register')) localStorage.removeItem('register');
+            localStorage.setItem('register', JSON.stringify({
                 name,
                 password
             }))
@@ -13,16 +14,36 @@ class Global {
         }
     };
 
+    getRegisteredUserCreditinials() {
+        return JSON.parse(localStorage.getItem('register'));
+    };
+
     getUser() {
          return JSON.parse(localStorage.getItem('user'));
     };
 
-    isAuthenticated() {
+    isAuthenticated() { 
         return !!localStorage.getItem('user');
     };
 
     logOut() {
-        return localStorage.removeItem('user');
+        return localStorage.clear();
+    };
+
+    login(user) {
+        if(user.name && user.password) {
+            return localStorage.setItem('user', JSON.stringify(user));
+        };
+    };
+
+    setLanguage(lan) {
+         if(lan) {
+             return localStorage.setItem('lan', lan);
+         }
+    };
+
+    getLanguage() {
+        return localStorage.getItem('lan');
     };
 
 };

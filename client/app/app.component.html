@@ -1,2 +1,8 @@
-<ui-view></ui-view>
+<div class="position-relative">
+    <div class="change-language">
+      <a  ng-class='{"active-language": activeLanguage === "en" }' ng-click='onLanguageChange("en")'>En</a> | 
+      <a  ng-class='{"active-language": activeLanguage === "ka" }' ng-click='onLanguageChange("ka")'>Ka</a>      
+    </div>
+    <ui-view></ui-view>
+</div>
  

@@ -1,3 +1,27 @@
-<div class="dashboard"> 
-    <pre>{{ 'TITLE' | translate }}</pre>
+<div class="header pt-5 pl-3 pr-3 dashboard-container">
+    <div class="d-flex justify-content-between">
+        <div class="user-info">
+             <p>{{ '9' | translate }} - {{ userName }}</p>
+        </div>
+        <div class="log-out">
+            <button class="btn backgroundelss" ng-click='logOut()'>{{ '10' | translate }}</button>
+        </div>
+    </div>
+
+    <table class="table table-dark mt-4">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">{{ '11' | translate }}</th>
+            <th scope="col">{{ '12' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="acc in bankAccounts">
+            <th scope="row">{{ acc.id }}</th>
+            <td>{{ acc.accountId }}</td>
+            <td>{{ acc.amount }}</td>
+          </tr>
+      </table>
+      
 </div>

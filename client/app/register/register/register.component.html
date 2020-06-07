@@ -1,3 +1,31 @@
-<div class="register">
-    Register
-</div>
+<form name='registerForm' autocomplete="off">
+    <div class="login-container vh-100 vw-100"> 
+        <div class="d-flex justify-content-center align-items-center h-100 w-100">
+                <div class="login-content">
+                    <div class="text-center">
+                        <h2>{{ '1' | translate }}</h3>
+                    </div>
+                    <div class="mt-2 d-flex d-flex justify-content-center">
+                        <div class="form-group w-75">
+                            <div class="mt-3">
+                                <input type="text" class="form-control" 
+                                       placeholder="{{ '2' | translate }}" name="userName" 
+                                       ng-model='user.name' ng-class='{"is-invalid": isSubmitted &&  !registerForm.userName.$valid }' required>
+                            </div>
+                            <div class="mt-3">
+                                <input type="password" class="form-control" 
+                                       placeholder="{{ '3' | translate }}" name='password' 
+                                       ng-model='user.password' ng-class='{"is-invalid": isSubmitted &&  !registerForm.password.$valid }' required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-red" ng-click='onSubmit()'>{{ '4' | translate }}</button>
+                        <a class="d-block mt-2" href="" ui-sref="login">{{ '5' | translate }}</a>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+</form>

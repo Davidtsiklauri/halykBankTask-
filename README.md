@@ -12,13 +12,13 @@ cd halykBankTask-
 #### 3) Install Dependencies
 
 ```sh
-npm i && npm rebuild node-sass
+npm i 
 ```
 
 #### 4) Run Project
 
 ```sh
-npm run start
+npm run     
 ```
 
 #### 5) Open chrome on 

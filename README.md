@@ -12,7 +12,7 @@ cd halykBankTask-
 #### 3) Install Dependencies
 
 ```sh
-npm i
+npm i && npm rebuild node-sass
 ```
 
 #### 4) Run Project

@@ -8,7 +8,6 @@ import appComponent from './app.component';
 import  'angular-ui-router-css';
 import registerModule from './register/register.module';
 import profileModule from './profile/profile.module';
-import SharedModule from './shared/shared.module';
 
 //Translate
 import en from '../assets/data/i18n/en';
@@ -25,7 +24,6 @@ angular.module('app', [
    profileService,
    registerModule.name,
    profileModule.name,
-   SharedModule.name
 ]).component('app', appComponent)
 //Routes
 .config(['$stateProvider', '$urlRouterProvider', route])

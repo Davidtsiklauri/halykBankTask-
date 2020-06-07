@@ -69,7 +69,7 @@
 
 	'use strict';
 
-	var _angular = __webpack_require__(12);
+	var _angular = __webpack_require__(8);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
@@ -77,9 +77,11 @@
 
 	var _angularjs2 = _interopRequireDefault(_angularjs);
 
+	__webpack_require__(106);
+
 	__webpack_require__(107);
 
-	__webpack_require__(108);
+	__webpack_require__(112);
 
 	var _angularTranslate = __webpack_require__(80);
 
@@ -99,10 +101,6 @@
 
 	var _profile2 = _interopRequireDefault(_profile);
 
-	var _shared = __webpack_require__(99);
-
-	var _shared2 = _interopRequireDefault(_shared);
-
 	var _en = __webpack_require__(100);
 
 	var _en2 = _interopRequireDefault(_en);
@@ -119,23 +117,27 @@
 
 	var _app4 = _interopRequireDefault(_app3);
 
+	var _profile3 = __webpack_require__(98);
+
+	var _profile4 = _interopRequireDefault(_profile3);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//Translate
-	_angular2.default.module('app', [_angularjs2.default, _angularTranslate2.default, _global2.default, _register2.default.name, _profile2.default.name, _shared2.default.name]).component('app', _app2.default)
+	_angular2.default.module('app', [_angularjs2.default, _angularTranslate2.default, _global2.default, _profile4.default, _register2.default.name, _profile2.default.name]).component('app', _app2.default)
 	//Routes
 	.config(['$stateProvider', '$urlRouterProvider', _app4.default])
 	//Translate
 	.config(['$translateProvider', function ($translateProvider) {
 	      $translateProvider.translations('ka', _ka2.default);
 	      $translateProvider.translations('en', _en2.default);
-	      $translateProvider.preferredLanguage('en');
-	}]).run(['$rootScope', '$location', 'global', function ($rootScope, $location, global) {
+	      $translateProvider.preferredLanguage(localStorage.getItem('lan') || 'ka');
+	}])
+	// Authorization Guard
+	.run(['$rootScope', '$location', 'global', function ($rootScope, $location, global) {
 	      $rootScope.$on("$locationChangeStart", function (e, next) {
 	            var isAuth = global.isAuthenticated();
 	            // navigate to dashboard if user is logged in and trying to access register page
 	            if (isAuth && (next.endsWith('login') || next.endsWith('register'))) {
-	                  console.log('here');
 	                  $location.path('/dashboard');
 	            }
 	            // navigate to register if user is no logged in and trying to access dashboard page
@@ -144,6 +146,8 @@
 	                  };
 	      });
 	}]);
+
+	//Translate
 
 /***/ },
 /* 1 */
@@ -1050,7 +1054,7 @@
 	 */
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var predicates_1 = __webpack_require__(2);
-	var rejectFactory_1 = __webpack_require__(11);
+	var rejectFactory_1 = __webpack_require__(12);
 	var common_1 = __webpack_require__(1);
 	var hof_1 = __webpack_require__(3);
 	/**
@@ -1438,6 +1442,14 @@
 
 /***/ },
 /* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(82);
+	module.exports = angular;
+
+
+/***/ },
+/* 9 */
 /***/ function(module, exports) {
 
 	/*
@@ -1493,7 +1505,7 @@
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -1745,7 +1757,7 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1768,7 +1780,7 @@
 	//# sourceMappingURL=interface.js.map
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @packageDocumentation @publicapi @module transition */
@@ -1889,14 +1901,6 @@
 	}());
 	exports.Rejection = Rejection;
 	//# sourceMappingURL=rejectFactory.js.map
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(82);
-	module.exports = angular;
-
 
 /***/ },
 /* 13 */
@@ -2270,14 +2274,14 @@
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
 	/** @packageDocumentation @publicapi @module transition */
-	var interface_1 = __webpack_require__(10);
+	var interface_1 = __webpack_require__(11);
 	var common_1 = __webpack_require__(1);
 	var strings_1 = __webpack_require__(6);
 	var predicates_1 = __webpack_require__(2);
 	var hof_1 = __webpack_require__(3);
 	var trace_1 = __webpack_require__(7);
 	var coreservices_1 = __webpack_require__(5);
-	var rejectFactory_1 = __webpack_require__(11);
+	var rejectFactory_1 = __webpack_require__(12);
 	var targetState_1 = __webpack_require__(14);
 	var defaultOptions = {
 	    current: common_1.noop,
@@ -4106,7 +4110,7 @@
 	Object.defineProperty(exports, "__esModule", { value: true });
 	/** @packageDocumentation @publicapi @module transition */
 	var common_1 = __webpack_require__(4);
-	var interface_1 = __webpack_require__(10);
+	var interface_1 = __webpack_require__(11);
 	/**
 	 * Determines if the given state matches the matchCriteria
 	 *
@@ -4272,7 +4276,7 @@
 	var common_1 = __webpack_require__(1);
 	var predicates_1 = __webpack_require__(2);
 	var hof_1 = __webpack_require__(3);
-	var interface_1 = __webpack_require__(10); // has or is using
+	var interface_1 = __webpack_require__(11); // has or is using
 	var transitionHook_1 = __webpack_require__(15);
 	var hookRegistry_1 = __webpack_require__(28);
 	var hookBuilder_1 = __webpack_require__(45);
@@ -4280,7 +4284,7 @@
 	var param_1 = __webpack_require__(13);
 	var resolvable_1 = __webpack_require__(17);
 	var resolveContext_1 = __webpack_require__(18);
-	var rejectFactory_1 = __webpack_require__(11);
+	var rejectFactory_1 = __webpack_require__(12);
 	var common_2 = __webpack_require__(4);
 	/** @hidden */
 	var stateSelf = hof_1.prop('self');
@@ -4949,7 +4953,7 @@
 	"use strict";
 	Object.defineProperty(exports, "__esModule", { value: true });
 	/** @packageDocumentation @publicapi @module transition */
-	var interface_1 = __webpack_require__(10);
+	var interface_1 = __webpack_require__(11);
 	var transition_1 = __webpack_require__(29);
 	var hookRegistry_1 = __webpack_require__(28);
 	var coreResolvables_1 = __webpack_require__(61);
@@ -6571,7 +6575,7 @@
 	var pathUtils_1 = __webpack_require__(16);
 	var pathNode_1 = __webpack_require__(25);
 	var transitionService_1 = __webpack_require__(30);
-	var rejectFactory_1 = __webpack_require__(11);
+	var rejectFactory_1 = __webpack_require__(12);
 	var targetState_1 = __webpack_require__(14);
 	var param_1 = __webpack_require__(13);
 	var glob_1 = __webpack_require__(21);
@@ -7140,7 +7144,7 @@
 	/** @packageDocumentation @publicapi @module transition */
 	var common_1 = __webpack_require__(1);
 	var predicates_1 = __webpack_require__(2);
-	var interface_1 = __webpack_require__(10);
+	var interface_1 = __webpack_require__(11);
 	var transitionHook_1 = __webpack_require__(15);
 	/**
 	 * This class returns applicable TransitionHooks for a specific Transition instance.
@@ -9052,7 +9056,7 @@
 	 * @license MIT License, http://www.opensource.org/licenses/MIT
 	 */
 	(function (global, factory) {
-	     true ? factory(exports, __webpack_require__(12), __webpack_require__(70)) :
+	     true ? factory(exports, __webpack_require__(8), __webpack_require__(70)) :
 	    typeof define === 'function' && define.amd ? define(['exports', 'angular', '@uirouter/core'], factory) :
 	    (global = global || self, factory(global['@uirouter/angularjs'] = {}, global.angular, global['@uirouter/core']));
 	}(this, (function (exports, ng_from_import, core) { 'use strict';
@@ -11103,7 +11107,7 @@
 	/** @packageDocumentation @internalapi @module hooks */
 	Object.defineProperty(exports, "__esModule", { value: true });
 	var trace_1 = __webpack_require__(7);
-	var rejectFactory_1 = __webpack_require__(11);
+	var rejectFactory_1 = __webpack_require__(12);
 	/**
 	 * A [[TransitionHookFn]] that skips a transition if it should be ignored
 	 *
@@ -11685,10 +11689,10 @@
 	 *
 	 * @packageDocumentation @preferred @publicapi @module transition
 	 */
-	__export(__webpack_require__(10));
+	__export(__webpack_require__(11));
 	__export(__webpack_require__(45));
 	__export(__webpack_require__(28));
-	__export(__webpack_require__(11));
+	__export(__webpack_require__(12));
 	__export(__webpack_require__(29));
 	__export(__webpack_require__(15));
 	__export(__webpack_require__(46));
@@ -47374,7 +47378,7 @@
 /* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
@@ -47388,7 +47392,7 @@
 /* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
@@ -47402,13 +47406,13 @@
 /* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);", ""]);
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Titillium+Web:700);", ""]);
 
 	// module
-	exports.push([module.id, "\n", ""]);
+	exports.push([module.id, ".change-language {\n  position: absolute;\n  right: 16px;\n  top: 10px; }\n  .change-language a {\n    cursor: pointer;\n    color: #007bff; }\n    .change-language a:hover {\n      text-decoration: underline; }\n  .change-language .active-language {\n    color: black; }\n", ""]);
 
 	// exports
 
@@ -47417,42 +47421,42 @@
 /* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
 	// module
-	exports.push([module.id, " ", ""]);
+	exports.push([module.id, ".dashboard-container {\n  max-width: 1200px;\n  margin: 0px auto; }\n", ""]);
 
 	// exports
 
 
 /***/ },
 /* 87 */
-86,
-/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".login-container {\n  background: #E5E5E5; }\n  .login-container .login-content {\n    background: #fff;\n    height: 330px;\n    width: 100%;\n    padding: 10px 15px;\n    border-radius: 6px;\n    max-width: 400px; }\n    .login-container .login-content .form-control {\n      background: #E5E5E5; }\n    .login-container .login-content h2 {\n      font-weight: 500; }\n", ""]);
 
 	// exports
 
 
 /***/ },
+/* 88 */
+87,
 /* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(8)();
+	exports = module.exports = __webpack_require__(9)();
 	// imports
 
 
 	// module
-	exports.push([module.id, " ", ""]);
+	exports.push([module.id, ".btn-red {\n  background: #FA4547;\n  color: #fff;\n  padding: 14px 0px;\n  width: 219px;\n  border-radius: 31px; }\n\n.warning {\n  color: red; }\n\n.backgroundelss {\n  cursor: pointer;\n  color: #007bff; }\n", ""]);
 
 	// exports
 
@@ -47464,19 +47468,28 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _appComponent = __webpack_require__(102);
 
 	var _appComponent2 = _interopRequireDefault(_appComponent);
 
-	__webpack_require__(109);
+	__webpack_require__(108);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var AppComponent = {
-	  template: _appComponent2.default
+	    template: _appComponent2.default,
+	    controller: ['$scope', 'global', '$translate', function ($scope, global, $translate) {
+	        var lang = global.getLanguage();
+	        $scope.activeLanguage = lang || 'en';
+	        $scope.onLanguageChange = function (lang) {
+	            global.setLanguage(lang);
+	            $translate.use(lang);
+	            $scope.activeLanguage = global.getLanguage();
+	        };
+	    }]
 	};
 
 	exports.default = AppComponent;
@@ -47504,8 +47517,13 @@
 	      name: 'dashboard',
 	      url: '/dashboard',
 	      component: 'dashboard',
-	      data: {
-	         needAdmin: true
+	      resolve: {
+	         bankAccounts: ['profileService', function (profileService) {
+	            return profileService.getBankAccounts().then(function (_ref) {
+	               var data = _ref.data;
+	               return data;
+	            });
+	         }]
 	      }
 	   }];
 
@@ -47534,20 +47552,34 @@
 
 	var _dashboardComponent2 = _interopRequireDefault(_dashboardComponent);
 
-	__webpack_require__(110);
+	__webpack_require__(109);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var LoginComponent = {
+	var DashboardComponent = {
 	  template: _dashboardComponent2.default,
-	  controller: ['$scope', 'global', function ($scope, global) {
-	    $scope.greeting = 'Hola!';
-	    global.registerUser('david', 'tsiklauri');
-	    // console.log(global.isAuthenticated());
-	  }]
+	  controller: ['$scope', 'global', '$location', 'utilitiesService', function ($scope, global, $location, utilitiesService) {
+	    $scope.bankAccounts = [];
+	    $scope.userName = utilitiesService.upperCaseFirstCharInString(global.getUser().name);
+
+	    var vm = this;
+
+	    vm.$onInit = function () {
+	      $scope.bankAccounts = vm.bankAccounts;
+	    };
+
+	    $scope.logOut = function () {
+	      global.logOut();
+	      $location.path('/register');
+	    };
+	  }],
+	  controllerAs: 'vm',
+	  bindings: {
+	    bankAccounts: '<'
+	  }
 	};
 
-	exports.default = LoginComponent;
+	exports.default = DashboardComponent;
 
 /***/ },
 /* 93 */
@@ -47559,7 +47591,7 @@
 	    value: true
 	});
 
-	var _angular = __webpack_require__(12);
+	var _angular = __webpack_require__(8);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
@@ -47567,9 +47599,13 @@
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
+	var _utilities = __webpack_require__(99);
+
+	var _utilities2 = _interopRequireDefault(_utilities);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ProfileModule = _angular2.default.module('app.profile', []);
+	var ProfileModule = _angular2.default.module('app.profile', [_utilities2.default]);
 
 	ProfileModule.component('dashboard', _dashboard2.default);
 
@@ -47582,22 +47618,37 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _loginComponent = __webpack_require__(104);
 
 	var _loginComponent2 = _interopRequireDefault(_loginComponent);
 
-	__webpack_require__(111);
+	__webpack_require__(110);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var LoginComponent = {
-	  template: _loginComponent2.default,
-	  controller: function controller() {
-	    console.log('onload');
-	  }
+	    template: _loginComponent2.default,
+	    controller: ['$scope', 'global', '$location', function ($scope, global, $location) {
+	        $scope.user = { name: '', password: '' };
+	        $scope.isSubmitted = false;
+	        $scope.isCredentialInvalid = false;
+
+	        $scope.onSubmit = function () {
+	            $scope.isSubmitted = true;
+	            if ($scope.user.name && $scope.user.password) {
+	                // global.registerUser($scope.user.name, $scope.user.password);
+	                if (global.getRegisteredUserCreditinials() && global.getRegisteredUserCreditinials().name === $scope.user.name && global.getRegisteredUserCreditinials().password === $scope.user.password) {
+	                    global.login($scope.user);
+	                    $location.path('/dashboard');
+	                } else {
+	                    return $scope.isCredentialInvalid = true;
+	                }
+	            };
+	        };
+	    }]
 	};
 
 	exports.default = LoginComponent;
@@ -47612,7 +47663,7 @@
 	        value: true
 	});
 
-	var _angular = __webpack_require__(12);
+	var _angular = __webpack_require__(8);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
@@ -47647,15 +47698,26 @@
 
 	var _registerComponent2 = _interopRequireDefault(_registerComponent);
 
-	__webpack_require__(112);
+	__webpack_require__(111);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var RegisterComponent = {
 	  template: _registerComponent2.default,
-	  controller: function controller() {
-	    console.log('onload');
-	  }
+	  controller: ['$scope', 'global', '$location', function ($scope, global, $location) {
+	    $scope.user = { name: '', password: '' };
+	    $scope.isSubmitted = false;
+	    $scope.isCredentialInvalid = false;
+
+	    $scope.onSubmit = function () {
+	      $scope.isSubmitted = true;
+	      if ($scope.user.name && $scope.user.password) {
+	        // global.registerUser($scope.user.name, $scope.user.password);
+	        global.registerUser($scope.user);
+	        $location.path('/login');
+	      };
+	    };
+	  }]
 	};
 
 	exports.default = RegisterComponent;
@@ -47672,7 +47734,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _angular = __webpack_require__(12);
+	var _angular = __webpack_require__(8);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
@@ -47687,15 +47749,24 @@
 
 	    _createClass(Global, [{
 	        key: 'registerUser',
-	        value: function registerUser(name, password) {
+	        value: function registerUser(_ref) {
+	            var name = _ref.name,
+	                password = _ref.password;
+
 	            if (name && password) {
-	                localStorage.setItem('user', JSON.stringify({
+	                if (localStorage.getItem('register')) localStorage.removeItem('register');
+	                localStorage.setItem('register', JSON.stringify({
 	                    name: name,
 	                    password: password
 	                }));
 	            } else {
 	                throw new Error('Invalid params');
 	            }
+	        }
+	    }, {
+	        key: 'getRegisteredUserCreditinials',
+	        value: function getRegisteredUserCreditinials() {
+	            return JSON.parse(localStorage.getItem('register'));
 	        }
 	    }, {
 	        key: 'getUser',
@@ -47710,7 +47781,26 @@
 	    }, {
 	        key: 'logOut',
 	        value: function logOut() {
-	            return localStorage.removeItem('user');
+	            return localStorage.clear();
+	        }
+	    }, {
+	        key: 'login',
+	        value: function login(user) {
+	            if (user.name && user.password) {
+	                return localStorage.setItem('user', JSON.stringify(user));
+	            };
+	        }
+	    }, {
+	        key: 'setLanguage',
+	        value: function setLanguage(lan) {
+	            if (lan) {
+	                return localStorage.setItem('lan', lan);
+	            }
+	        }
+	    }, {
+	        key: 'getLanguage',
+	        value: function getLanguage() {
+	            return localStorage.getItem('lan');
 	        }
 	    }]);
 
@@ -47728,25 +47818,50 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
-	var _wildCardComponent = __webpack_require__(106);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _wildCardComponent2 = _interopRequireDefault(_wildCardComponent);
+	var _angular = __webpack_require__(8);
 
-	__webpack_require__(113);
+	var _angular2 = _interopRequireDefault(_angular);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var WildCardComponent = {
-	  template: _wildCardComponent2.default,
-	  controller: function controller() {
-	    console.log('onload');
-	  }
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	exports.default = WildCardComponent;
+	var ProfileService = function () {
+	    _createClass(ProfileService, null, [{
+	        key: '$inject',
+	        get: function get() {
+	            return ['$http'];
+	        }
+	    }]);
+
+	    function ProfileService($http) {
+	        _classCallCheck(this, ProfileService);
+
+	        this.$http = $http;
+	    }
+	    /**
+	     * @GET
+	     */
+
+
+	    _createClass(ProfileService, [{
+	        key: 'getBankAccounts',
+	        value: function getBankAccounts() {
+	            return this.$http.get('../../assets/data/bank-accounts.json');
+	        }
+	    }]);
+
+	    return ProfileService;
+	}();
+
+	;
+
+	exports.default = _angular2.default.module('services.profileService', []).service('profileService', ProfileService).name;
 
 /***/ },
 /* 99 */
@@ -47755,24 +47870,41 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	         value: true
+	    value: true
 	});
 
-	var _angular = __webpack_require__(12);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _angular = __webpack_require__(8);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _wildCard = __webpack_require__(98);
-
-	var _wildCard2 = _interopRequireDefault(_wildCard);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SharedModule = _angular2.default.module('app.shard', []);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	SharedModule.component('wildCard', _wildCard2.default);
+	var UtilitiesService = function () {
+	    function UtilitiesService() {
+	        _classCallCheck(this, UtilitiesService);
+	    }
 
-	exports.default = SharedModule;
+	    _createClass(UtilitiesService, [{
+	        key: 'upperCaseFirstCharInString',
+	        value: function upperCaseFirstCharInString(str) {
+	            if (str && typeof str === 'string') {
+	                return '' + str.charAt(0).toUpperCase() + str.slice(1, str.length);
+	            } else {
+	                throw new Error('not string');
+	            }
+	        }
+	    }]);
+
+	    return UtilitiesService;
+	}();
+
+	;
+
+	exports.default = _angular2.default.module('services.utilitiesService', []).service('utilitiesService', UtilitiesService).name;
 
 /***/ },
 /* 100 */
@@ -47784,10 +47916,18 @@
 	    value: true
 	});
 	exports.default = {
-	    TITLE: 'Hallo',
-	    FOO: 'Dies ist ein Paragraph.',
-	    BUTTON_LANG_EN: 'englisch',
-	    BUTTON_LANG_DE: 'deutsch'
+	    '1': 'Sign up',
+	    '2': 'Enter username',
+	    '3': 'Enter password',
+	    '4': 'Continue',
+	    '5': 'Already have an account? Log in!',
+	    '6': 'Log in',
+	    '7': 'Register',
+	    '8': 'Invalid Credentials',
+	    '9': 'Welcome',
+	    '10': 'Log out',
+	    '11': 'Account Number',
+	    '12': 'Money'
 	};
 
 /***/ },
@@ -47800,44 +47940,46 @@
 	    value: true
 	});
 	exports.default = {
-	    TITLE: 'Hello',
-	    FOO: 'This is a paragraph.',
-	    BUTTON_LANG_EN: 'english',
-	    BUTTON_LANG_DE: 'german'
+	    '1': 'დარეგისტრირება',
+	    '2': 'ჩაწერეთ მომხმარებლის სახელი',
+	    '3': 'შეიყვანეთ პაროლი',
+	    '4': 'გაგრძელება',
+	    '5': 'უკვე გაქვთ ანგარიში? შესვლა!',
+	    '6': 'შესვლა',
+	    '7': 'რეგისტრაცია',
+	    '8': 'არასწორი მონაცემები',
+	    '9': 'მოგესალმებით',
+	    '10': 'გასვლა',
+	    '11': 'ანგარის ნომერი',
+	    '12': 'თანხა'
 	};
 
 /***/ },
 /* 102 */
 /***/ function(module, exports) {
 
-	module.exports = "<ui-view></ui-view>\n "
+	module.exports = "<div class=\"position-relative\">\n    <div class=\"change-language\">\n      <a  ng-class='{\"active-language\": activeLanguage === \"en\" }' ng-click='onLanguageChange(\"en\")'>En</a> | \n      <a  ng-class='{\"active-language\": activeLanguage === \"ka\" }' ng-click='onLanguageChange(\"ka\")'>Ka</a>      \n    </div>\n    <ui-view></ui-view>\n</div>\n "
 
 /***/ },
 /* 103 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"dashboard row\"> \n    <pre>{{ 'TITLE' | translate }}</pre>\n</div>"
+	module.exports = "<div class=\"header pt-5 pl-3 pr-3 dashboard-container\">\n    <div class=\"d-flex justify-content-between\">\n        <div class=\"user-info\">\n             <p>{{ '9' | translate }} - {{ userName }}</p>\n        </div>\n        <div class=\"log-out\">\n            <button class=\"btn backgroundelss\" ng-click='logOut()'>{{ '10' | translate }}</button>\n        </div>\n    </div>\n\n    <table class=\"table table-dark mt-4\">\n        <thead>\n          <tr>\n            <th scope=\"col\">ID</th>\n            <th scope=\"col\">{{ '11' | translate }}</th>\n            <th scope=\"col\">{{ '12' | translate }}</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr ng-repeat=\"acc in bankAccounts\">\n            <th scope=\"row\">{{ acc.id }}</th>\n            <td>{{ acc.accountId }}</td>\n            <td>{{ acc.amount }}</td>\n          </tr>\n      </table>\n      \n</div>"
 
 /***/ },
 /* 104 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"login\">\n    Login\n</div>"
+	module.exports = "<form name='loginForm' autocomplete=\"off\">\n    <div class=\"login-container vh-100 vw-100\"> \n        <div class=\"d-flex justify-content-center align-items-center h-100 w-100\">\n                <div class=\"login-content\">\n                    <div class=\"text-center\">\n                        <h2>{{ '6' | translate }}</h3>\n                    </div>\n                    <div class=\"mt-2 d-flex d-flex justify-content-center\">\n                        <div class=\"form-group w-75\">\n                            <div class=\"mt-3\">\n                                <input type=\"text\" class=\"form-control\" \n                                       placeholder=\"{{ '2' | translate }}\" name=\"userName\" \n                                       ng-model='user.name' ng-class='{\"is-invalid\": isSubmitted &&  !loginForm.userName.$valid }' required>\n                            </div>\n                            <div class=\"mt-3\">\n                                <input type=\"password\" class=\"form-control\" \n                                       placeholder=\"{{ '3' | translate }}\" name='password' \n                                       ng-model='user.password' ng-class='{\"is-invalid\": isSubmitted &&  !loginForm.password.$valid }' required>\n                            </div>\n                            <span ng-if='isCredentialInvalid' class=\"warning d-block mt-2\">{{ '8' | translate }}</span>\n                        </div>\n                    </div>\n                    \n                    <div class=\"text-center\">\n                        <button class=\"btn btn-red\" ng-click='onSubmit()'>{{ '6' | translate }}</button>\n                        <a class=\"d-block mt-2\" href=\"\" ui-sref=\"register\">{{ '7' | translate }}</a>\n                    </div>\n                    \n                </div>\n        </div>\n    </div>\n</form>"
 
 /***/ },
 /* 105 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"register\">\n    Register\n</div>"
+	module.exports = "<form name='registerForm' autocomplete=\"off\">\n    <div class=\"login-container vh-100 vw-100\"> \n        <div class=\"d-flex justify-content-center align-items-center h-100 w-100\">\n                <div class=\"login-content\">\n                    <div class=\"text-center\">\n                        <h2>{{ '1' | translate }}</h3>\n                    </div>\n                    <div class=\"mt-2 d-flex d-flex justify-content-center\">\n                        <div class=\"form-group w-75\">\n                            <div class=\"mt-3\">\n                                <input type=\"text\" class=\"form-control\" \n                                       placeholder=\"{{ '2' | translate }}\" name=\"userName\" \n                                       ng-model='user.name' ng-class='{\"is-invalid\": isSubmitted &&  !registerForm.userName.$valid }' required>\n                            </div>\n                            <div class=\"mt-3\">\n                                <input type=\"password\" class=\"form-control\" \n                                       placeholder=\"{{ '3' | translate }}\" name='password' \n                                       ng-model='user.password' ng-class='{\"is-invalid\": isSubmitted &&  !registerForm.password.$valid }' required>\n                            </div>\n                        </div>\n                    </div>\n\n                    <div class=\"text-center\">\n                        <button class=\"btn btn-red\" ng-click='onSubmit()'>{{ '4' | translate }}</button>\n                        <a class=\"d-block mt-2\" href=\"\" ui-sref=\"login\">{{ '5' | translate }}</a>\n                    </div>\n                    \n                </div>\n        </div>\n    </div>\n</form>"
 
 /***/ },
 /* 106 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"login\">\n    WildCardComponent\n</div>"
-
-/***/ },
-/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -47846,7 +47988,7 @@
 	var content = __webpack_require__(83);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -47863,7 +48005,7 @@
 	}
 
 /***/ },
-/* 108 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -47872,7 +48014,7 @@
 	var content = __webpack_require__(84);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -47889,7 +48031,7 @@
 	}
 
 /***/ },
-/* 109 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -47898,7 +48040,7 @@
 	var content = __webpack_require__(85);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -47915,7 +48057,7 @@
 	}
 
 /***/ },
-/* 110 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -47924,7 +48066,7 @@
 	var content = __webpack_require__(86);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -47941,7 +48083,7 @@
 	}
 
 /***/ },
-/* 111 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -47950,7 +48092,7 @@
 	var content = __webpack_require__(87);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -47967,7 +48109,7 @@
 	}
 
 /***/ },
-/* 112 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -47976,7 +48118,7 @@
 	var content = __webpack_require__(88);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -47993,7 +48135,7 @@
 	}
 
 /***/ },
-/* 113 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -48002,14 +48144,14 @@
 	var content = __webpack_require__(89);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(9)(content, {});
+	var update = __webpack_require__(10)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/sass-loader/index.js!./wildCard.component.scss", function() {
-				var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/sass-loader/index.js!./wildCard.component.scss");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});

@@ -18,7 +18,7 @@ npm i
 #### 4) Run Project
 
 ```sh
-npm run     
+npm run start
 ```
 
 #### 5) Open chrome on 
